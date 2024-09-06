@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header') %>
+    <header>
+      <style>
+        .signupform{
+          width: 90vw;
+          margin: auto;
+          margin-top: 40px;
+        }
+      </style>
+      <title>SignUP - KraitOP</title>
+    </header>
+<body>
+    <%- include('./partials/navbar') %>
+    <% if (locals.duplicateError) { %>
+      <div class="alert alert-warning" role="alert">
+        <%= locals.duplicateError %>
+      </div>
+    <% } %>
+    <form method="post" action="/user/signup" class="signupform">
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullName">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" id="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>

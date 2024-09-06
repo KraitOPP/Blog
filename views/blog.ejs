@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header') %>
+    <header>
+        <title>KraitOP - Blog</title>
+    </header>
+<body>
+    <%- include('./partials/navbar') %>
+       
+    <div class="container m-3" style="width: 100vw;">
+        <h1 ><%= blog.Title %></h1>
+        <img src="<%- blog.coverImageUrl %>" alt="" srcset="" style="width: 700px;">
+        <div class="mt-4" style="box-sizing: border-box; width: 95vw;">
+            <pre><%- blog.Body %></pre>
+        </div>
+    </div>
+    <div class="container mt-4 mb-5" style="margin-left: 10px; display: flex; justify-content: left; align-items:start;">
+        <img src="<%- blog.CreatedBy.ProfileImageURL %>" alt="" style="width: 50px;">
+        <h3 style="margin-left: 20px; text-align: center;"><small>Author : <%= blog.CreatedBy.fullName %></small></h3>
+    </div>
+    <div class="container" style="margin-left: 10px; margin-bottom: 50px;">
+        <h2 style="margin-left: 15px; margin-bottom: 10px;">Comments</h2>
+        <div class="allcomments container">
+            <% comments.forEach(comment => { %>
+                <div class="card mb-3" style="width: 95vw; display: flex; justify-content: center;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="<%- comment.CreatedBy.ProfileImageURL %>" class="img-fluid rounded-start" alt="..." style="height: 100px;">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%- comment.CreatedBy.fullName %></h5>
+                          <p class="card-text"><%- comment.content %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <% }) %>
+        </div>
+    <% if (locals.user) { %>
+        <form action="/blog/comment/<%- blog._id %>" method="post">
+            <div class="container mt-5">
+                <h3>Add New Comment</h3>
+                <div class="mb-3">
+                  <label for="content" class="form-label">Comment</label>
+                  <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                </div>
+          </div>
+        </form>
+        <% } else { %>
+            <div class="alert alert-primary" role="alert" style="width: 96vw;">
+                Login to Comment! <a href="/user/signin">Sign In Page</a>
+              </div>
+        <% } %>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header') %>
+    <header>
+        <title>Add New Blog - KraitOP</title>
+    </header>
+
+    <body>
+        <%- include('./partials/navbar') %>
+            <div class="m-3">
+                <form action="/blog/add-new" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="Title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="Title" id="Title" placeholder="Post Title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Body" class="form-label">Post Body</label>
+                        <textarea class="form-control" name="Body" id="Body" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="coverImageUrl" class="form-label">Cover Image</label>
+                        <input class="form-control" type="file" name="coverImageUrl" id="coverImageUrl">
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <%- include('./partials/scripts') %>
+    </body>
+
+</html>

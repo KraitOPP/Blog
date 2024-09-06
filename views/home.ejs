@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header') %>
+    <header>
+        <title>Home - KraitOP</title>
+    </header>
+<body>
+    <%- include('./partials/navbar') %>
+        <div class="m-5">
+            <% locals.Blogs.forEach(blog => { %>
+               <a href="/blog/<%= blog._id %>" rel="noopener noreferrer" style="text-decoration: none;">
+                <div class="card mb-3" style="max-width: 90vw; height: 200px;">
+                    <div class="row g-0" style="height: 100%;">
+                      <div class="col-md-4" style="height: 100%; width: 350px;">
+                        <img src="<%-blog.coverImageUrl%>" style="height: 100%; width: 100%; object-fit: cover;" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= blog.Title %></h5>
+                          <p class="card-text"><%= blog.Body.slice(0,500) %>...</p>
+                          <p class="card-text"><small class="text-body-secondary">Author : <%= blog.CreatedBy.fullName %></small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+               </a>
+            <% }); %>
+        </div>
+    <%- include('./partials/scripts') %>
+</body>
+
+</html>
